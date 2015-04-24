@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  	<link rel="stylesheet" href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <script src="build/react.js"></script>
+    <style>
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-family: 'Roboto', sans-serif;
+			background-color: #eee;
+		}
+
+		.container {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			height: 200px;
+
+			-ms-box-orient: horizontal;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: flex;
+
+			-webkit-justify-content: space-around;
+			justify-content: space-around;
+			-webkit-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-align-items: stretch;
+			align-items: stretch;
+		}
+
+		.header, nav {
+			flex: 1 100%;
+			color: #fff;
+			font-size: 20px;
+			height: 64px;
+			width: inherit;
+		}
+
+		nav {
+			padding-left: 15px;
+			background-color: #e20a16;
+		}
+
+		nav ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		nav ul li {
+			float: left;
+			padding: 20px 30px 20px 0;
+		}
+
+		ul.tools {
+			float: right;
+		}
+
+		ul.tools li {
+			width: 64px;
+			height: 64px;
+			padding-left: 22px;
+			border-left: 1px solid #c40812;
+		}
+
+		ul.tools li:hover {
+			background-color: #c40812;
+			cursor: pointer;
+		}
+
+		.flex-item {
+			padding: 10px;
+			color: white;
+			font-weight: bold;
+			font-size: 2em;
+			text-align: center;
+		}
+	</style>
+  </head>
+  <body>
+
+    <div class="container header" id="header" orgSearch="true">
+
+    	<eroad-menu>
+			<item>Activity</item>
+			<item>Service</item>
+			<item>Reports</item>
+    	</eroad-menu>
+
+    </div>
+
+
+
+
+
+
+    <script src="build/eroad-header.js"></script>
+  </body>
+</html>
