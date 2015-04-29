@@ -1,60 +1,67 @@
-var hidden = {
-	display: 'none'
-};
+'use strict';
+
+import * as math from './components/math';
 
 var Logo = React.createClass({
-	render: function() {
+	render: () => {
 		return (
-			<div>EROAD</div>
+			<img src="http://careers.eroad.co.nz/themes/eroad/images/logo.svg"/>
 		);
 	}
 });
 
 var Settings = React.createClass({
-	render: function() {
+	render: () => {
 		return (
 			<i className="fa fa-cog"></i>
 		);
 	}
 });
 
+var User = React.createClass({
+	render: () => {
+		return (
+			<i className="fa fa-user"></i>
+		);
+	}
+});
+
 var Help = React.createClass({
-	render: function() {
+	render: () => {
 		return (
 			<i className="fa fa-question"></i>
 		);
 	}
 });
 
-var SearchBar = React.createClass({
+var Search = React.createClass({
+	propTypes: {
+		shown: React.PropTypes.string
+	},
 
-	getInitialState: function() {
-        return {
-            show: this.props.show || false
-        }
-    },
-
-	componentDidMount: function() {
+	componentDidMount: () => {
 		// debugger;
 	},
 
-    render: function() {
+	render: function() {
 		return (
-			<form>
-				<input type="text" placeholder="Search..." />
-			</form>
+			<li className={this.props.shown == 'true' ? '' : 'hidden'}>
+				<i className="fa fa-search"></i>
+			</li>
 		);
-    }
+	}
 });
 
 var View = React.createClass({
 
 	propTypes: {
-		orgsearch: React.PropTypes.bool
+		orgsearch: React.PropTypes.string
 	},
 
 	componentWillMount: function() {
 		console.log('mounting:: ', this);
+		var el = document.querySelector('eroad-menu');
+		this.el = el;
 	},
 
 	componentDidMount: function() {
@@ -77,21 +84,29 @@ var View = React.createClass({
 		if (hasNextProps) {
 			this.setProps(nextProps);
 		}
+
+		var items = this.el.querySelector('ul'),
+			clone = items.cloneNode(true).children,
+			menu = document.querySelector('.menu-items');
+
+		menu.appendChild(items);
 	},
 
-	_onClick: function() {
+	_onClick: () => {
 		debugger;
 	},
 
     render: function() {
         return (
             <nav>
-            	<ul>
-                	<li onClick={this._onClick}><Logo /></li>
-                	<li></li>
+            	<ul className="menu-items">
+                	<li className="logo" onClick={this._onClick}><Logo /></li>
                 </ul>
+
                 <ul className="tools">
+                	<Search shown={this.props.orgsearch} />
                 	<li><Settings /></li>
+                	<li><User /></li>
                 	<li><Help /></li>
                 </ul>
             </nav>
@@ -101,7 +116,7 @@ var View = React.createClass({
 
 React.render(
 	<View
-		orgsearch={false}
+		orgsearch={'true'}
 	/>,
-	document.getElementById('header')
+	document.getElementsByTagName('eroad-header')[0]
 );
